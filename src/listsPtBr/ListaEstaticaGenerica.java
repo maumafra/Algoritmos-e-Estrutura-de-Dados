@@ -1,31 +1,31 @@
-package lists;
+package listsPtBr;
 
 /*
  * 
  * author: Maurício Mafra Monnerat
  */
 
-public class StaticList<GenericClass> {
+public class ListaEstaticaGenerica <GenericClass> {
     private GenericClass[] info;
     private int length;
 
-    public StaticList() {
+    public ListaEstaticaGenerica() {
         info = (GenericClass[]) new Object[10];
     }
 
-    public StaticList(int size) {
+    public ListaEstaticaGenerica(int size) {
         info = (GenericClass[]) new Object[size];
     }
 
-    public void add (GenericClass value) {
-        if(info.length == this.getLength()){
-            this.resize();
+    public void inserir (GenericClass value) {
+        if(info.length == this.getTamanho()){
+            this.redimensionar();
         }
         info[length] = value;
         this.length++;
     }
 
-    public void resize() {
+    public void redimensionar() {
         int newBound = info.length + ((int)(50/info.length) == 0? 1 : (int)(50/info.length));
         GenericClass[] newArray = (GenericClass[]) new Object[newBound];
         for(int i = 0; i < info.length; i++){
@@ -34,24 +34,24 @@ public class StaticList<GenericClass> {
         info = newArray;
     }
 
-    public void clear() {
+    public void liberar() {
         info = (GenericClass[]) new Object[10];
         this.length = 0;
     }
 
-    public int getLength(){
+    public int getTamanho(){
         return this.length;
     }
 
-    public void show(){
+    public void exibir(){
         System.out.println(this.toString());
     }
 
     @Override
     public String toString(){
         String text = "{";
-        for(int i = 0; i < this.getLength(); i++){
-            if(i == this.getLength()-1){
+        for(int i = 0; i < this.getTamanho(); i++){
+            if(i == this.getTamanho()-1){
                 return text += info[i].toString()+"}";
             }
             text += info[i].toString()+", ";
@@ -59,7 +59,7 @@ public class StaticList<GenericClass> {
         return "";
     }
 
-    public int hasValue(GenericClass value){
+    public int buscar(GenericClass value){
         for(int i = 0; i < info.length; i++){
             if(info[i].equals(value)){
                 return i;
@@ -68,8 +68,8 @@ public class StaticList<GenericClass> {
         return -1;
     }
 
-    public void remove(GenericClass value){
-        int index = this.hasValue(value);
+    public void retirar(GenericClass value){
+        int index = this.buscar(value);
         if(index == -1){
             return;
         }
@@ -83,32 +83,32 @@ public class StaticList<GenericClass> {
         }
     }
 
-    public GenericClass getValue(int index){
-        if(index >= this.getLength()){
+    public GenericClass obterElemento(int index){
+        if(index >= this.getTamanho()){
             throw new IndexOutOfBoundsException("Index out of bounds.");
         }
         return info[index];
     }
 
-    public boolean isEmpty(){
-        return this.getLength() == 0;
+    public boolean estaVazia(){
+        return this.getTamanho() == 0;
     }
 
-    public GenericClass getLastElement(){
-        if(this.getLength() < 1){
+    public GenericClass obterUltimoElemento(){
+        if(this.getTamanho() < 1){
             return null;
         }
-        return this.getValue(this.getLength()-1);
+        return this.obterElemento(this.getTamanho()-1);
     }
 
-    public void reverse(){
-        int numberOfChanges = (int) this.getLength()/2;
+    public void inverter(){
+        int numberOfChanges = (int) this.getTamanho()/2;
         GenericClass element;
 
         for(int i = 0; i<numberOfChanges;  i++){
-            element = this.getValue(i);
-            this.info[i] = this.getValue(this.getLength()-1-i);
-            this.info[this.getLength()-1-i] = element;
+            element = this.obterElemento(i);
+            this.info[i] = this.obterElemento(this.getTamanho()-1-i);
+            this.info[this.getTamanho()-1-i] = element;
         }
     }
 }

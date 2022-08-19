@@ -5,15 +5,15 @@ package listsPtBr;
  * autor: Maurício Mafra Monnerat
  */
 
-public class ListaEstatica {
+public class ListaEstaticaInteiros {
     private int[] info;
     private int tamanho;
 
-    public ListaEstatica() {
+    public ListaEstaticaInteiros() {
         info = new int[10];
     }
 
-    public ListaEstatica(int size) {
+    public ListaEstaticaInteiros(int size) {
         info = new int[size];
     }
 
@@ -26,7 +26,7 @@ public class ListaEstatica {
     }
 
     public void redimensionar() {
-        int newBound = info.length + ((int)(info.length/2) == 0? 1 : (int)(info.length/2));
+        int newBound = info.length + ((int)(50/info.length) == 0? 1 : (int)(50/info.length));
         int[] newArray = new int[newBound];
         for(int i = 0; i < info.length; i++){
             newArray[i] = info[i];

@@ -27,7 +27,7 @@ public class StaticIntegerList {
     }
 
     public void resize() {
-        int newBound = info.length + ((int)(info.length/2) == 0? 1 : (int)(info.length/2));
+        int newBound = info.length + ((int)(50/info.length) == 0? 1 : (int)(50/info.length));
         int[] newArray = new int[newBound];
         for(int i = 0; i < info.length; i++){
             newArray[i] = info[i];
