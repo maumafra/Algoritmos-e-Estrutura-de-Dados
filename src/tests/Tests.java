@@ -5,7 +5,6 @@ import lists.DynamicIntegerList;
 import lists.DynamicList;
 import lists.StaticIntegerList;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

@@ -1,5 +1,10 @@
 package lists;
 
+/*
+ * 
+ * author: Maurício Mafra Monnerat
+ */
+
 public class NodeList<GenericClass> {
     private GenericClass info;
     private NodeList<GenericClass> next;
