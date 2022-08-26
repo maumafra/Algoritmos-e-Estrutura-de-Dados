@@ -61,10 +61,10 @@ public class DynamicIntegerList{
 
     public void remove (int value){
         NodeIntegerList element = first;
-        NodeIntegerList prior = null;
+        NodeIntegerList previous = null;
         while(element != null && element.getValue() != value){
-            prior = element;
-            element = prior.getNextNode();
+            previous = element;
+            element = previous.getNextNode();
         }
         if(element == null){
             return;
@@ -72,7 +72,7 @@ public class DynamicIntegerList{
         if(element == first){
             this.first = first.getNextNode();
         } else {
-            prior.setNextNode(element.getNextNode());
+            previous.setNextNode(element.getNextNode());
         }
         this.length--;
     }

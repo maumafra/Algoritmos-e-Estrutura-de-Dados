@@ -5,11 +5,11 @@ package lists;
  * author: Maurício Mafra Monnerat
  */
 
-public class DynamicList<GenericClass> {
-    private NodeList<GenericClass> first;
+public class DynamicLinkedList<GenericClass> {
+    private NodeLinkedList<GenericClass> first;
     private int length;
 
-    public DynamicList(){
+    public DynamicLinkedList(){
         first = null;
         length = 0;
     }
@@ -19,14 +19,15 @@ public class DynamicList<GenericClass> {
     }
     
     public void put(GenericClass value){
-        NodeList<GenericClass> newNode = new NodeList<>(value);
+        NodeLinkedList<GenericClass> newNode = new NodeLinkedList<>(value);
         newNode.setNextNode(first);
+        if (first != null)first.setPreviousNode(newNode);
         this.first = newNode;
         length++;
     }
 
-    public NodeList<GenericClass> getElement(GenericClass value){
-        NodeList<GenericClass> next = first;
+    public NodeLinkedList<GenericClass> getElement(GenericClass value){
+        NodeLinkedList<GenericClass> next = first;
         while(next!=null){
             if(next.getValue().equals(value)){
                 return next;
@@ -47,7 +48,7 @@ public class DynamicList<GenericClass> {
     @Override
     public String toString(){
         String text = "{";
-        NodeList<GenericClass> next = first;
+        NodeLinkedList<GenericClass> next = first;
         while(next!=null){
             if(next.getNextNode() == null){
                 return text += next.toString()+"}";
@@ -59,32 +60,32 @@ public class DynamicList<GenericClass> {
     }
 
     public void remove (GenericClass value){
-        NodeList<GenericClass> element = first;
-        NodeList<GenericClass> previous = null;
-        while(element != null && !element.getValue().equals(value)){
-            previous = element;
-            element = previous.getNextNode();
-        }
-        if(element == null){
-            return;
-        }
+        NodeLinkedList<GenericClass> element = getElement(value);
+
+        if(element == null) return;
+        
         if(element == first){
             this.first = first.getNextNode();
         } else {
-            previous.setNextNode(element.getNextNode());
+            element.getPreviousNode().setNextNode(element.getNextNode());
         }
+
+        if(element.getNextNode() == null) return;
+
+        element.getNextNode().setPreviousNode(element.getPreviousNode());
+
         this.length--;
     }
 
-    public NodeList<GenericClass> getFirst(){
+    public NodeLinkedList<GenericClass> getFirst(){
         return this.first;
     }
 
-    public NodeList<GenericClass> getElementByIndex(int index){
+    public NodeLinkedList<GenericClass> getElementByIndex(int index){
         if(index >= this.length || index < 0){
             throw new IndexOutOfBoundsException("Index out of bounds.");
         }
-        NodeList<GenericClass> element = first;
+        NodeLinkedList<GenericClass> element = first;
         for(int i = 0; i < index; i++){
             element = element.getNextNode(); 
         }
@@ -92,14 +93,23 @@ public class DynamicList<GenericClass> {
     }
 
     /* getElement method without using the length attribute as the question asks */
-    public NodeList<GenericClass> getElementByIndexWithoutLength(int index){
+    public NodeLinkedList<GenericClass> getElementByIndexWithoutLength(int index){
         if(index < 0) throw new IndexOutOfBoundsException("Index out of bounds.");
-        NodeList<GenericClass> element = first;
+        NodeLinkedList<GenericClass> element = first;
         while ((element!=null) && (index > 0)) {
             index--;
             element = element.getNextNode();
         }
         if (element == null) throw new IndexOutOfBoundsException("Index out of bounds.");
         return element;
+    }
+
+    public void clear (){
+        NodeLinkedList<GenericClass> element = first;
+        while( element != null ){
+            element.setPreviousNode(null);
+            element = element.getNextNode();
+            if(element != null) element.getPreviousNode().setNextNode(null);
+        }
     }
 }
