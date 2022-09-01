@@ -1,6 +1,7 @@
 package tests;
 
 import lists.StaticList;
+import listsPtBr.ListaEncadeada;
 import lists.DynamicIntegerList;
 import lists.DynamicList;
 import lists.StaticIntegerList;
@@ -233,5 +234,45 @@ public class Tests {
         assertThrows(IndexOutOfBoundsException.class, () -> list.getElementByIndex(-1));
         assertThrows(IndexOutOfBoundsException.class, () -> list.getElementByIndex(10));
         list.show();
+    }
+
+    @Test
+    public void testListaEncadeadaPutRemoveStrings(){
+        ListaEncadeada<String> list = new ListaEncadeada<>();
+
+        list.inserir("OLAAAAA");
+        assertEquals("OLAAAAA", list.getPrimeiro().getInfo());
+        list.inserir("TESTE");
+        assertEquals("TESTE", list.getPrimeiro().getInfo());
+        list.inserir("VASCO");
+        assertEquals("VASCO", list.getPrimeiro().getInfo());
+
+        list.exibir();
+
+        assertEquals(list.buscar("OLAAAAA"), list.obterNo(2));
+        assertEquals(list.buscar("TESTE"), list.obterNo(1));
+        assertEquals(list.buscar("VASCO"), list.obterNo(0));
+
+        assertEquals(false, list.estaVazia());
+        assertEquals(3, list.obterComprimento());
+        assertEquals(null, list.buscar("OL"));
+        list.retirar("9");
+        assertEquals(3, list.obterComprimento());
+
+        list.retirar("VASCO");
+        assertEquals(null, list.buscar("VASCO"));
+        assertEquals(list.buscar("TESTE"), list.obterNo(0));
+        assertEquals(2, list.obterComprimento());
+        assertEquals("TESTE", list.getPrimeiro().getInfo());
+        list.exibir();
+        list.retirar("OLAAAAA");
+        list.exibir();
+        list.retirar("TESTE");
+        assertEquals(true, list.estaVazia());
+        assertEquals(null, list.getPrimeiro());
+        assertEquals(0, list.obterComprimento());
+        assertThrows(IndexOutOfBoundsException.class, () -> list.obterNo(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.obterNo(10));
+        list.exibir();
     }
 }
