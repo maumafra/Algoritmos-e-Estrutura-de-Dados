@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import lists.DynamicLinkedList;
 import lists.NodeLinkedList;
+import listsPtBr.ListaDupla;
+import listsPtBr.NoListaDupla;
 
 public class TestsList4 {
     @Test
@@ -43,5 +45,42 @@ public class TestsList4 {
 
         assertEquals(null, node20.getNextNode());
         assertEquals(null, node20.getPreviousNode());
+    }
+
+    @Test
+    public void testListaDuplaPut(){
+        ListaDupla<String> lista = new ListaDupla<>();
+
+        lista.inserir("Oi");
+        assertEquals("Oi", lista.getPrimeiro().getInfo());
+    }
+
+    @Test
+    public void testListaDuplaClear(){
+        ListaDupla<Integer> lista = new ListaDupla<>();
+
+        lista.inserir(5);
+        lista.inserir(10);
+        lista.inserir(15);
+        lista.inserir(20);
+
+        NoListaDupla<Integer> node5 = lista.buscar(5);
+        NoListaDupla<Integer> node10 = lista.buscar(10);
+        NoListaDupla<Integer> node15 = lista.buscar(15);
+        NoListaDupla<Integer> node20 = lista.buscar(20);
+
+        lista.liberar();
+
+        assertEquals(null, node5.getProximo());
+        assertEquals(null, node5.getAnterior());
+
+        assertEquals(null, node10.getProximo());
+        assertEquals(null, node10.getAnterior());
+
+        assertEquals(null, node15.getProximo());
+        assertEquals(null, node15.getAnterior());
+
+        assertEquals(null, node20.getProximo());
+        assertEquals(null, node20.getAnterior());
     }
 }
