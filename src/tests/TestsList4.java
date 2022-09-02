@@ -7,6 +7,7 @@ import org.junit.Test;
 import lists.DynamicLinkedList;
 import lists.NodeLinkedList;
 import listsPtBr.ListaDupla;
+import listsPtBr.ListaEncadeada;
 import listsPtBr.NoListaDupla;
 
 public class TestsList4 {
@@ -69,6 +70,8 @@ public class TestsList4 {
         NoListaDupla<Integer> node15 = lista.buscar(15);
         NoListaDupla<Integer> node20 = lista.buscar(20);
 
+        assertEquals("{20, 15, 10, 5}", lista.toString());
+
         lista.liberar();
 
         assertEquals(null, node5.getProximo());
@@ -82,5 +85,39 @@ public class TestsList4 {
 
         assertEquals(null, node20.getProximo());
         assertEquals(null, node20.getAnterior());
+    }
+
+    @Test
+    public void testForEach(){
+        DynamicLinkedList<Integer> lista = new DynamicLinkedList<>();
+
+        lista.put(5);
+        lista.put(10);
+        lista.put(15);
+        lista.put(20);
+
+        int soma = 0;
+        for(Integer i:lista){
+            soma += i;
+        }
+
+        assertEquals(50, soma);
+    }
+
+    @Test
+    public void teste(){
+        ListaEncadeada<Integer> numeros = new ListaEncadeada<>();
+
+        numeros.inserir(70);
+numeros.inserir(60);
+numeros.inserir(50);
+numeros.inserir(40);
+numeros.inserir(30);
+numeros.inserir(20);
+numeros.inserir(10);
+
+ListaEncadeada<Integer> novaLista;
+novaLista = numeros.criarSubLista(2,5);
+System.out.println(novaLista.toString());
     }
 }

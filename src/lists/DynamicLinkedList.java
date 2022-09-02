@@ -1,11 +1,13 @@
 package lists;
 
+import java.util.Iterator;
+
 /*
  * 
  * author: Maurício Mafra Monnerat
  */
 
-public class DynamicLinkedList<GenericClass> {
+public class DynamicLinkedList<GenericClass> implements Iterable<GenericClass>{
     private NodeLinkedList<GenericClass> first;
     private int length;
 
@@ -111,5 +113,25 @@ public class DynamicLinkedList<GenericClass> {
             element = element.getNextNode();
             if(element != null) element.getPreviousNode().setNextNode(null);
         }
+    }
+
+    @Override
+    public Iterator<GenericClass> iterator() {
+        return new MyIterator();
+    }
+
+    private class MyIterator implements Iterator<GenericClass>{
+        private NodeLinkedList<GenericClass> element = first;
+
+        @Override
+        public boolean hasNext() {
+            return element.getNextNode()!=null;
+        }
+
+        @Override
+        public GenericClass next() {
+            element = element.getNextNode();
+            return element.getNextNode() != null ? element.getNextNode().getValue():null;
+        }  
     }
 }
