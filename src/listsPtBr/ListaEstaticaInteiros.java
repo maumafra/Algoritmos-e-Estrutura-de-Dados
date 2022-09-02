@@ -21,7 +21,26 @@ public class ListaEstaticaInteiros {
         if(info.length == this.getTamanho()){
             this.redimensionar();
         }
-        info[tamanho] = value;
+        if(tamanho == 0){
+            info[0] = value;
+        } else {
+        for (int i = this.tamanho -1; i >=0 ;i--){
+            if(info[i] > value){
+                info[i+1] = info[i];
+                if(i == 0 || info[i-1] < value){
+                    info[i] = value;
+                    break;
+                }
+            } else {
+                if(i == 0){
+                    info[i] = value;
+                } else {
+                    info[i+1] = value;
+                }
+                break;
+            }
+        }
+        }
         this.tamanho++;
     }
 

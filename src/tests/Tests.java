@@ -2,6 +2,7 @@ package tests;
 
 import lists.StaticList;
 import listsPtBr.ListaEncadeada;
+import listsPtBr.ListaEstaticaInteiros;
 import lists.DynamicIntegerList;
 import lists.DynamicList;
 import lists.StaticIntegerList;
@@ -274,5 +275,28 @@ public class Tests {
         assertThrows(IndexOutOfBoundsException.class, () -> list.obterNo(-1));
         assertThrows(IndexOutOfBoundsException.class, () -> list.obterNo(10));
         list.exibir();
+    }
+
+    @Test
+    public void testProva(){
+        ListaEstaticaInteiros lista = new ListaEstaticaInteiros();
+
+        lista.inserir(10);
+        lista.inserir(5);
+        lista.inserir(8);
+        lista.inserir(3);
+        lista.inserir(12);
+        lista.inserir(1);
+        lista.inserir(4);
+
+        lista.inserir(20);
+        lista.inserir(25);
+        lista.inserir(28);
+        lista.inserir(23);
+        lista.inserir(212);
+        lista.inserir(21);
+        lista.inserir(24);
+
+        lista.exibir();
     }
 }

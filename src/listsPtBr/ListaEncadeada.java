@@ -102,4 +102,18 @@ public class ListaEncadeada<GenericClass> {
         if (element == null) throw new IndexOutOfBoundsException("Index out of bounds.");
         return element;
     }
+
+    public ListaEncadeada<GenericClass> criarSubLista(int inicio, int fim){
+        ListaEncadeada<GenericClass> lista2 = new ListaEncadeada<>();
+        NoLista<GenericClass> elemento = first;
+        for(int i = 0; i < inicio; i++){
+            elemento = elemento.getProximo();
+        }
+        lista2.inserir(elemento.getInfo());
+        for (int u = inicio +1; u <= fim; u++){
+            elemento = elemento.getProximo();
+            lista2.inserir(elemento.getInfo());
+        }
+        return lista2;
+    }
 }
