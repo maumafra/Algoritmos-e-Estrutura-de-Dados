@@ -23,7 +23,9 @@ public class ListaEstaticaInteiros {
         }
         if(tamanho == 0){
             info[0] = value;
-        } else {
+            this.tamanho++;
+            return;
+        }
         for (int i = this.tamanho -1; i >=0 ;i--){
             if(info[i] > value){
                 info[i+1] = info[i];
@@ -32,14 +34,9 @@ public class ListaEstaticaInteiros {
                     break;
                 }
             } else {
-                if(i == 0){
-                    info[i] = value;
-                } else {
-                    info[i+1] = value;
-                }
+                info[i+1] = value;
                 break;
             }
-        }
         }
         this.tamanho++;
     }
