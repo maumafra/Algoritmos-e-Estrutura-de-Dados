@@ -14,21 +14,22 @@ public class PilhaVetor <T> implements Pilha<T>{
     @Override
     public void push(T valor) {
         if(tamanho == limite) throw new PilhaCheiaException();
-        this.info[limite -1 - tamanho] = valor;
+        this.info[tamanho] = valor;
         tamanho++;
     }
 
     @Override
     public T pop() {
-        if(tamanho == 0) throw new PilhaVaziaException();
+        T valor = peek();
         tamanho--;
-        return this.info[limite -1 -tamanho];
+        info[tamanho] = null;
+        return valor;
     }
 
     @Override
     public T peek() {
-        if(tamanho == 0) throw new PilhaVaziaException();
-        return this.info[limite -tamanho];
+        if(estaVazia()) throw new PilhaVaziaException();
+        return this.info[tamanho -1];
     }
 
     @Override
@@ -44,25 +45,16 @@ public class PilhaVetor <T> implements Pilha<T>{
 
     public String toString(){
         String text = "";
-        for (int i = 0; i < tamanho; i++){
-            if(i != 0) text = ","+text;
-            text = info[limite - 1 -i].toString()+text;
+        for (int i = tamanho -1; i >= 0; i--){
+            text += info[i].toString();
+            if(i>0)text += ",";
         }
         return text;
     }
 
     public void concatenar(PilhaVetor<T> p){
-        if(this.limite < this.tamanho + p.tamanho) throw new RuntimeException();
-
-        T[] aux = (T[]) new Object[p.tamanho];
-        int outroTamanho = p.tamanho;
-
-        for(int i = 0; i < outroTamanho; i++){
-            aux[outroTamanho - 1 -i] = p.pop();
-        }
-        for(int i = 0; i < outroTamanho; i++){
-            this.push(aux[i]);
-            p.push(aux[i]);
+        for(int i = 0; i<p.tamanho; i++){
+            this.push(p.info[i]);
         }
     }
     
