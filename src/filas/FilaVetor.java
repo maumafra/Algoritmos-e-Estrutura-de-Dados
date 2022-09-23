@@ -9,6 +9,8 @@ public class FilaVetor<T> implements Fila<T>{
 
     public FilaVetor(int limite){
         this.limite = limite;
+        tamanho = 0;
+        inicio = 0;
         info = (T[])new Object[limite];
     }
 
