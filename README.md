@@ -3,6 +3,6 @@
 Algoritmos e Estrutura de Dados
 </h1>
 <div>
-Matéria 3 Semestre Ciências da Computação
+Matéria Terceiro Semestre Ciências da Computação
 </div>
 </body>
