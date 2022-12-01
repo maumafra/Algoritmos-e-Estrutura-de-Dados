@@ -8,6 +8,7 @@ public class TesteOrdenacao {
         testeOrdenacaoBolha();
         testeOrdenacaoQuickSort();
         testeOrdenacaoMergeSort();
+        testeOrdenacaoDecrescenteBolha();
     }
 
     public static void testeOrdenacaoBolha(){
@@ -40,6 +41,15 @@ public class TesteOrdenacao {
         bolha.setInfo(vetor);
         bolha.ordenar();
         testarEquals(arrayToString(bolha.getInfo()), "[2,15,30,70,88,90]");
+    }
+
+    public static void testeOrdenacaoDecrescenteBolha(){
+        Integer[] vetor = {70,2,88,15,90,30};
+        OrdenacaoBolha<Integer> bolha = new OrdenacaoBolha<>();
+        bolha.setInfo(vetor);
+        bolha.ordenarDecrescente();
+        testarEquals(arrayToString(bolha.getInfo()), "[90,88,70,30,15,2]");
+        System.out.println(arrayToString(bolha.getInfo()));
     }
 
     public static void testar(String msg){

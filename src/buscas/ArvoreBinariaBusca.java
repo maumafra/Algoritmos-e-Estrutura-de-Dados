@@ -118,4 +118,25 @@ public class ArvoreBinariaBusca <T extends Comparable<T>> extends ArvoreBinariaA
             }
         }
     }
+
+    public boolean isDegenerada(){
+        if(estaVazia()){
+            return false;
+        }
+        if(getRaiz().getDireita() == null && getRaiz().getEsquerda() == null){
+            return false;
+        }
+        NoArvoreBinaria<T> no = getRaiz();
+        while (no!=null) {
+            if(no.getDireita() != null && no.getEsquerda() != null){
+                return true;
+            }
+            if(no.getDireita() == null){
+                no = no.getEsquerda();
+            } else {
+                no = no.getDireita();
+            }
+        }
+        return false;
+    }
 }
