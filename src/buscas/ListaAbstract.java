@@ -39,8 +39,9 @@ public abstract class ListaAbstract <GenericClass>{
     @Override
     public String toString(){
         String text = "{";
-        for(int i = 0; i < this.getTamanho(); i++){
-            if(i == this.getTamanho()-1){
+        int finalIndex = this.getTamanho();
+        for(int i = 0; i < finalIndex; i++){
+            if(i == finalIndex-1){
                 return text += info[i].toString()+"}";
             }
             text += info[i].toString()+", ";
